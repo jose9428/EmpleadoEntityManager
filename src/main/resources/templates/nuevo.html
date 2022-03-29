@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+	crossorigin="anonymous">
+<title>Nuevo</title>
+</head>
+<body>
+	<div class="container-fluid mt-3">
+		<div class="card">
+			<div class="card-header bg-success text-white">
+				<h5 class="text-header" th:text="${titulo + ' Empleado'}"></h5>
+			</div>
+			<div class="card-body">
+				<a href="/" class="btn btn-info btn-sm">Volver atrás</a>
+				<hr>
+				<form th:object="${empleado}" method="post" action="/guardar">
+			    	  <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Nombre:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="text" th:field="*{nombres}" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Apellido Paterno:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="text" th:field="*{ape_paterno}" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Apellido Materno:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="text" th:field="*{ape_materno}" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Género:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <select class="form-control" th:field="*{genero}">
+                              	<option value="">:::Seleccione:::</option>
+                              	<option th:each="item: ${generos}"
+                              	th:value="${item[0]}" th:text="${item}"></option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                       <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Fecha Nacimiento:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="date" th:field="*{fecha_nacimiento}" class="form-control">
+                          </div>
+                      </div>
+                      
+                       <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Correo:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="email" th:field="*{correo}" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <div class="row form-group">
+                          <div class="col col-md-2">
+                              <label class=" form-control-label">Sueldo:</label>
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <input type="number" th:field="*{sueldo}" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <input type="hidden" th:field="*{id_empleado}">
+                      <button type="submit" class="btn btn-primary btn-sm">Guardar Cambios</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
