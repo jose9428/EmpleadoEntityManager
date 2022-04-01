@@ -1,5 +1,6 @@
 package com.edu.pe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -67,7 +68,17 @@ public class EmpleadoDaoImpl implements IEmpleadoDao{
 	    
 	    query.setParameter("xsueldo",sueldo);
 	    query.execute();
-	    List<Empleado>  list=( List<Empleado> ) query.getResultList();
+	    List<Object> objectList = query.getResultList();
+	    List<Empleado> list = new ArrayList<>();
+	    for (int i = 0; i< objectList.size(); i++) {
+	        Object[] data = (Object[])  objectList.get(i);
+	        
+	        Empleado e = new Empleado();
+	        e.setId_empleado(Integer.parseInt(String.valueOf(data[0])));
+	        e.setNombres(String.valueOf(data[1]));
+	        list.add(e);
+	    }
+	    
 	    return list;
 	}
 }

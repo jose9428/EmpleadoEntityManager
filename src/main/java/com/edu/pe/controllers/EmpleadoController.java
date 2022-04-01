@@ -26,6 +26,7 @@ public class EmpleadoController {
 	@GetMapping("/")
 	public String listar(Model model) {
 		List<Empleado> lista = empleadoDao.ListProc(2000);
+		System.out.println(lista.toString());
 		//for(Empleado e: lista) {
 			//System.out.println(e);
 	//	}
